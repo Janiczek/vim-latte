@@ -35,13 +35,15 @@ runtime! syntax/php.vim
 "  (so we can highlight things inside them too ;) )
 
 " for attributes:
-
-syn region htmlTag start=+<[^/]+ end=+>+ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlCssDefinition,@htmlPreproc,@htmlArgCluster,latteAttribute
+syn region htmlTag start=+<[^/]+ end=+>+
+    \ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlCssDefinition,@htmlPreproc,@htmlArgCluster,latteAttribute
 
 " for values:
+syn region htmlString contained start=+"+ end=+"+
+    \ contains=htmlSpecialChar,javaScriptExpression,@htmlPreproc,latteMacro,latteVariable
 
-syn region htmlString contained start=+"+ end=+"+ contains=htmlSpecialChar,javaScriptExpression,@htmlPreproc,latteMacro,latteVariable
-syn region htmlString contained start=+'+ end=+'+ contains=htmlSpecialChar,javaScriptExpression,@htmlPreproc,latteMacro,latteVariable
+syn region htmlString contained start=+'+ end=+'+
+    \ contains=htmlSpecialChar,javaScriptExpression,@htmlPreproc,latteMacro,latteVariable
 
 " ------------------------------------------------------------
 " ------------------------------------------- n:attribs ------
@@ -55,21 +57,26 @@ syn match latteAttribute contained /n:[a-zA-Z]\+\>/
 " ------------------------------------------------------------
 
 " macro: {a macro}
-syn region latteMacro start="{\S" end="}" contains=latteBlockName,latteString,latteVariable
+syn region latteMacro start="{\S" end="}"
+    \ contains=latteBlockName,latteString,latteVariable
 
 " block name: #blockName
 syn match latteBlockName /#[$_a-zA-Z0-9]\+\>/ contained
 
 " string: 'abcdę'
-syn region latteString start=+'+ end=+'+ contained contains=latteVariable
-syn region latteString start=+"+ end=+"+ contained contains=latteVariable
+syn region latteString start=+'+ end=+'+ contained
+    \ contains=latteVariable
+
+syn region latteString start=+"+ end=+"+ contained
+    \ contains=latteVariable
 
 " ------------------------------------------------------------
 " -------------------------------------------- comments ------
 " ------------------------------------------------------------
 
 " comments: {* a basic comment *}
-syn region latteComment start="{\*" end="\*}" contains=latteTodo
+syn region latteComment start="{\*" end="\*}"
+    \ contains=latteTodo
 
 " todo: {* TODO something *}
 syn keyword latteTodo contained TODO FIXME XXX
@@ -79,7 +86,8 @@ syn keyword latteTodo contained TODO FIXME XXX
 " ------------------------------------------------------------
 
 " annotation comments: {** an @annotation comment *}
-syn region latteAnnotationComment start="{\*\*" end="\*}" contains=latteTodo,latteAnnotation,latteVariable,latteType
+syn region latteAnnotationComment start="{\*\*" end="\*}"
+    \ contains=latteTodo,latteAnnotation,latteVariable,latteType
 
 " annotation: @param
 syn match latteAnnotation /@[$_a-zA-Z][$_a-zA-Z0-9]*\>/
@@ -88,7 +96,8 @@ syn match latteAnnotation /@[$_a-zA-Z][$_a-zA-Z0-9]*\>/
 syn match latteVariable /$[_a-zA-Z][_a-zA-Z0-9]*\>/
 
 " type: string
-syn keyword latteType contained boolean integer float double string array object resource NULL
+syn keyword latteType contained boolean integer float double
+    \ string array object resource NULL
 
 " ============================================================
 " =========================================== WIRING ;) ======
