@@ -90,10 +90,10 @@ syn region latteAnnotationComment start="{\*\*" end="\*}"
     \ contains=latteTodo,latteAnnotation,latteVariable,latteType
 
 " annotation: @param
-syn match latteAnnotation /@[$_a-zA-Z][$_a-zA-Z0-9]*\>/
+syn match latteAnnotation /@[$_a-zA-Z][$_a-zA-Z0-9]*\>/ contained
 
 " variable: $myVar
-syn match latteVariable /$[_a-zA-Z][_a-zA-Z0-9]*\>/
+syn match latteVariable /$[_a-zA-Z][_a-zA-Z0-9]*\>/ contained
 
 " type: string
 syn keyword latteType contained boolean integer float double
