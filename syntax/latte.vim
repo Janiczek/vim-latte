@@ -3,7 +3,7 @@
 " Maintainer:	     Martin Janiczek <martin@janiczek.cz>
 " Latest Revision: 11 March 2012
 " URL:             http://forum.nette.org/cs/10222-latte-vim-syntax-highlighter
-" URL:             http://github.com/janiczek/vim-latte
+" URL:             https://github.com/janiczek/vim-latte
 
 " ============================================================
 " ================================ INCLUDES AND WHATNOT ======
