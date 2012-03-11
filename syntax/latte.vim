@@ -21,6 +21,12 @@ runtime! syntax/php.vim
 " ========================================= DEFINITIONS ======
 " ============================================================
 
+" TODO FIXME XXX !!!!!!! :D
+"                PHP+JS+CSS don't highlight in *.latte files.
+" note to self: check /opt/local/share/vim/vim73/syntax/
+"                                                   php.vim
+"                                                  html.vim
+
 " TODO: should we recognize things like => , : or not?
 " TODO: more specifically, should we allow only the macros
 "       that really are in Latte? like:
