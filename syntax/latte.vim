@@ -28,6 +28,7 @@ runtime! syntax/php.vim
 "       {link} <-- bad
 " TODO: is this style (#blocks same color as $phpVars) ok?
 "                     (n:attrs different color than attrs)
+" TODO: macros inside <a> links
 
 " ------------------------------------------------------------
 " ------------------------------------------- n:attribs ------
