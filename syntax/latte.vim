@@ -21,12 +21,6 @@ runtime! syntax/php.vim
 " ========================================= DEFINITIONS ======
 " ============================================================
 
-" TODO FIXME XXX !!!!!!! :D
-"                PHP+JS+CSS don't highlight in *.latte files.
-" note to self: check /opt/local/share/vim/vim73/syntax/
-"                                                   php.vim
-"                                                  html.vim
-
 " TODO: should we recognize things like => , : or not?
 " TODO: more specifically, should we allow only the macros
 "       that really are in Latte? like:
@@ -36,27 +30,18 @@ runtime! syntax/php.vim
 "                     (n:attrs different color than attrs)
 
 " ------------------------------------------------------------
-" ------------------------------------------ HTML hacks ------
-" ------------------------------------------------------------
-"  (so we can highlight things inside them too ;) )
-
-" for attributes:
-syn region htmlTag start=+<[^/]+ end=+>+
-    \ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlCssDefinition,@htmlPreproc,@htmlArgCluster,latteAttribute
-
-" for values:
-syn region htmlString contained start=+"+ end=+"+
-    \ contains=htmlSpecialChar,javaScriptExpression,@htmlPreproc,latteMacro,latteVariable
-
-syn region htmlString contained start=+'+ end=+'+
-    \ contains=htmlSpecialChar,javaScriptExpression,@htmlPreproc,latteMacro,latteVariable
-
-" ------------------------------------------------------------
 " ------------------------------------------- n:attribs ------
 " ------------------------------------------------------------
 
-" n:attrib: <tag n:foo="$bar">
-syn match latteAttribute contained /n:[a-zA-Z]\+\>/
+" Commented out because it breaks highlighting of inline CSS and JS.
+" TODO?
+
+"" n:attrib: <tag n:foo="$bar">
+"syn match latteAttribute contained /n:[a-zA-Z]\+\>/
+
+"" for attributes:
+"syn region htmlTag start=+<[^/]+ end=+>+
+"    \ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlCssDefinition,@htmlPreproc,@htmlArgCluster,latteAttribute
 
 " ------------------------------------------------------------
 " ---------------------------------------------- macros ------
@@ -105,12 +90,25 @@ syn match latteVariable /$[_a-zA-Z][_a-zA-Z0-9]*\>/ contained
 syn keyword latteType contained boolean integer float double
     \ string array object resource NULL
 
+" ------------------------------------------------------------
+" ---------------------------------------- HTML strings ------
+" ------------------------------------------------------------
+"  (so we can highlight things inside them too ;) )
+
+" for values:
+syn region htmlString contained start=+"+ end=+"+
+    \ contains=htmlSpecialChar,javaScriptExpression,@htmlPreproc,latteMacro,latteVariable
+
+syn region htmlString contained start=+'+ end=+'+
+    \ contains=htmlSpecialChar,javaScriptExpression,@htmlPreproc,latteMacro,latteVariable
+
 " ============================================================
 " =========================================== WIRING ;) ======
 " ============================================================
 
 " finally, use the definitions!
-hi def link latteAttribute         Type
+
+"hi def link latteAttribute         Type
 
 hi def link latteMacro             PreProc
 hi def link latteBlockName         Identifier
